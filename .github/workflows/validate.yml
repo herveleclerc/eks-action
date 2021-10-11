@@ -17,9 +17,9 @@ jobs:
         aws-region: eu-west-1
         role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
         role-skip-session-tagging: true
-        
+        role-duration-seconds: 1200
         #role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
-        #role-duration-seconds: 1200
+        #
         #role-session-name: MySessionName
         
     - name: list eks for testing
