@@ -24,4 +24,4 @@ jobs:
         
     - name: list eks for testing
       run: |
-       aws eks update-kubeconfig --name=github-action
+       aws eks update-kubeconfig --name=gekko-nonprod
