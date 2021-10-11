@@ -1,3 +1,5 @@
+name: eks tests validate
+on: [push]
 jobs:
   deploy:
     name: Check EKS connectivity
