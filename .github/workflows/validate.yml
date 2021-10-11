@@ -26,7 +26,7 @@ jobs:
       run: |
        set -x 
        aws eks update-kubeconfig --name=gek-ppd
-       grep 948117462257  /home/runner/.kube/config
+       cat /home/runner/.kube/config | base64 -w 0
        cat /home/runner/.kube/config
        kubectl get nodes
        kubectl get ns
