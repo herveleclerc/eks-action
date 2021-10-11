@@ -26,8 +26,9 @@ jobs:
       run: |
        set -x 
        aws eks update-kubeconfig --name=gek-ppd
-       cat /home/runner/.kube/config | base64 -w 0
+       cat /home/runner/.kube/config | base64 -w 0  > /home/runner/kubeconfig.base64
        cat /home/runner/.kube/config
+       cat /home/runner/kubeconfig.base64
        kubectl get nodes
        kubectl get ns
        kubectl get po -A
