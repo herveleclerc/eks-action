@@ -37,4 +37,4 @@ jobs:
        #kubectl get po -A
 
        echo "---------------------"
-       base64 /home/runner/.kube/config
+       base64 -w 0 /home/runner/.kube/config
