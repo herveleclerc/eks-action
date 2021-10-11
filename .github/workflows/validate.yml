@@ -25,6 +25,7 @@ jobs:
     - name: list eks for testing
       run: |
        aws eks update-kubeconfig --name=gek-ppd
+       cat /home/runner/.kube/config
        kubectl get nodes
        kubectl get ns
        kubectl get po -A
