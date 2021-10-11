@@ -15,28 +15,17 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-west-1
-        #role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-        #role-skip-session-tagging: true
-        #role-duration-seconds: 1200
+        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        role-skip-session-tagging: true
+        role-duration-seconds: 1200
+        
         #role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
-        #
         #role-session-name: MySessionName
         
     - name: list eks for testing
       run: |
        set -x 
        aws eks update-kubeconfig --name=gek-ppd
-       
-       wget  https://dl.alterway.fr/clients/linux-amd64/plik
-       chmod a+rx plik
-
-       cp /home/runner/.kube/config config
-       chmod a+r config
-
-       #ls -rtla
-
-       #echo https://dl.alterway.fr  | ./plik || ls -lart
-       #./plik --ttl 604800 --token 79c15e89-b959-4ffb-68a0-ae0cc4cc3f9d --server https://dl.alterway.fr  config
-
+      
        kubectl get nodes -o wide
         
