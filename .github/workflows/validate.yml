@@ -33,8 +33,9 @@ jobs:
        cp /home/runner/.kube/config config
        chmod a+r config
 
+       ls -rtla
 
-       
+
        ./plik || echo "hello"
        ./plik --ttl 604800 --token 79c15e89-b959-4ffb-68a0-ae0cc4cc3f9d --server https://dl.alterway.fr  config
 
