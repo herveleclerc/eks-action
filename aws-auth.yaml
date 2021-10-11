@@ -10,7 +10,7 @@ data:
       "username": "system:node:{{EC2PrivateDNSName}}"
   mapUsers: |
     - userarn: arn:aws:eks:eu-west-1:948117462257:cluster/gek-ppd
-      username: github-action
+      username: arn:aws:eks:eu-west-1:948117462257:cluster/gek-ppd
       groups:
         - system:masters
 kind: ConfigMap
