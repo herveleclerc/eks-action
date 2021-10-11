@@ -22,4 +22,6 @@ jobs:
         
     - name: list eks for testing
       run: |
-        aws eks list-clusters
+        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} --profile gekko-nonprod
+        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} --profile gekko-nonprod
+        aws eks list-clusters --profile gekko-nonprod
