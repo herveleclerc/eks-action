@@ -1,7 +1,10 @@
 name: eks tests validate
-on: [push]
+on: 
+  push: 
+    branches: 
+      - develop
 jobs:
-  deploy:
+  build:
     name: Check EKS connectivity
     runs-on: ubuntu-latest
 
@@ -22,7 +25,7 @@ jobs:
         #role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
         #role-session-name: MySessionName
         
-    - name: list eks for testing
+    - name: Build images
       run: |
        set -x 
        aws eks update-kubeconfig --name=gek-ppd

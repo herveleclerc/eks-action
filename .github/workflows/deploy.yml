@@ -1,0 +1,43 @@
+name: Deploy on EKS
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      verbose:
+        description: "Set --verbose to get verbose build output"
+        required: false
+        default: ""
+      git-ref:
+        description: Git Ref (Optional)    
+        required: false
+jobs:
+  deploy:
+    name: Check EKS connectivity
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials from gekko-non-prod
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-west-1
+        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        role-skip-session-tagging: true
+        role-duration-seconds: 1200
+
+        #role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
+        #role-session-name: MySessionName
+        
+    - name: list pods 
+      run: |
+       set -x 
+       aws eks update-kubeconfig --name=gek-ppd
+       kubectl get po -o wide -A
+        
