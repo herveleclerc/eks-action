@@ -25,10 +25,8 @@ jobs:
         #role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
         #role-session-name: MySessionName
         
-    - name: Build images
+    - name: Build Images
       run: |
-       set -x 
        aws eks update-kubeconfig --name=gek-ppd
-      
        kubectl get nodes -o wide
         
