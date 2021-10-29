@@ -1,4 +1,4 @@
-name: eks tests validate
+name: Build And Push Image
 on: 
   push: 
     branches: 
