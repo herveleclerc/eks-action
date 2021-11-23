@@ -1,6 +1,8 @@
 name: Deploy on EKS
 on:
   push:
+    tags:
+      - '*'
     branches: [ master ]
   pull_request:
     branches: [ master ]
@@ -19,6 +21,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
     - name: Checkout
       uses: actions/checkout@v2
 
@@ -39,5 +46,6 @@ jobs:
       run: |
        set -x 
        aws eks update-kubeconfig --name=gek-ppd
+       echo "deploy tag ${{ steps.get_version.outputs.VERSION }}"
        kubectl get po -o wide -A
         
